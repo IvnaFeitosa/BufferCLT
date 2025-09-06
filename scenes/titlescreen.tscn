@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://datx87lhmx7w5"]
+
+[ext_resource type="Script" uid="uid://baup2ouo0a7ra" path="res://scripts/titlescreen.gd" id="1_6d6rd"]
+[ext_resource type="FontFile" uid="uid://0vaspj58mr76" path="res://assets/fonts/retro.ttf" id="3_tt55a"]
+
+[sub_resource type="Animation" id="Animation_6d6rd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ji010"]
+resource_name = "flick"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3jj3l"]
+_data = {
+&"RESET": SubResource("Animation_6d6rd"),
+&"flick": SubResource("Animation_ji010")
+}
+
+[node name="titlescreen" type="Node2D"]
+script = ExtResource("1_6d6rd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="inputprompt" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = -7.0
+offset_right = 63.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_tt55a")
+theme_override_font_sizes/normal_font_size = 11
+text = "press any button"
+fit_content = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/inputprompt"]
+libraries = {
+&"": SubResource("AnimationLibrary_3jj3l")
+}
+autoplay = "flick"
+
+[node name="gamename" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 477.0
+offset_bottom = 60.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_tt55a")
+theme_override_font_sizes/normal_font_size = 22
+text = "bufferclt pre-pre-pre-pre-alpha"
