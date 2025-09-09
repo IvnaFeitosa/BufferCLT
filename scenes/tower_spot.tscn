@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dr0d5mpsyia50"]
+
+[ext_resource type="Script" uid="uid://bqcqiyi70ij7g" path="res://scripts/tower_spot.gd" id="1_lrb4j"]
+[ext_resource type="Texture2D" uid="uid://bn2d77cqabhvy" path="res://assets/tower_spot.png" id="1_npdt2"]
+[ext_resource type="Texture2D" uid="uid://bgrw28jkr0g5r" path="res://assets/tower_spotlight.png" id="2_duuhf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lrb4j"]
+height = 34.0
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_lrb4j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_npdt2")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(0, -18)
+rotation = 3.14159
+scale = Vector2(0.0475975, 0.0631571)
+energy = 0.78
+texture = ExtResource("2_duuhf")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lrb4j")
+
+[connection signal="input_event" from="StaticBody2D" to="." method="_on_static_body_2d_input_event"]
+[connection signal="mouse_entered" from="StaticBody2D" to="." method="_on_static_body_2d_mouse_entered"]
+[connection signal="mouse_exited" from="StaticBody2D" to="." method="_on_static_body_2d_mouse_exited"]

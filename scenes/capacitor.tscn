@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://de67ma1t83xvb"]
+
+[ext_resource type="Texture2D" uid="uid://bxbeqe7jbng5q" path="res://assets/capacitor.png" id="1_lv1wq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jywr7"]
+radius = 63.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lv1wq"]
+atlas = ExtResource("1_lv1wq")
+region = Rect2(0, 0, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jywr7"]
+atlas = ExtResource("1_lv1wq")
+region = Rect2(30, 0, 30, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jnthu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lv1wq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jywr7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_jywr7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jnthu")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.539489
+
+[node name="shadow" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+modulate = Color(0, 0, 0, 0.368627)
+show_behind_parent = true
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_jnthu")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.539489
