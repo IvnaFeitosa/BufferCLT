@@ -22,9 +22,9 @@ func update_selection():
 	for i in range(menu_items.size()):
 		if i == selected_index:
 			menu_items[i].add_theme_color_override("font_color", Color.GREEN)
-			selector.global_position.y = menu_items[i].global_position.y
+			selector.position.y = menu_items[i].global_position.y
 		else:
-			menu_items[i].add_theme_color_override("font_color", Color.WHITE)
+			menu_items[i].add_theme_color_override("font_color", Color.WEB_GREEN)
 
 func execute_option():
 	match selected_index:
