@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=3 uid="uid://d16827f4omtah"]
+
+[ext_resource type="Script" uid="uid://dynfj3uwqcs27" path="res://scripts/shop.gd" id="1_032fp"]
+[ext_resource type="FontFile" uid="uid://0vaspj58mr76" path="res://assets/fonts/retro.ttf" id="1_xfvoa"]
+[ext_resource type="Texture2D" uid="uid://bk8nlap7sjn1f" path="res://assets/lola_shop_sprite.png" id="2_1l46r"]
+[ext_resource type="Script" uid="uid://dcvdfpsvpf3h1" path="res://scripts/towers.gd" id="2_8r1wq"]
+[ext_resource type="Resource" uid="uid://bi1sydr6m6td2" path="res://scripts/capacitor.tres" id="3_ajxib"]
+[ext_resource type="PackedScene" uid="uid://d01u42mgic1tt" path="res://scenes/shopButton.tscn" id="4_y6sft"]
+[ext_resource type="PackedScene" uid="uid://g8pux5icx2i" path="res://scenes/coin_ui.tscn" id="7_ajxib"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_032fp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1l46r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_032fp")
+tower_data = Array[ExtResource("2_8r1wq")]([ExtResource("3_ajxib")])
+button_scene = ExtResource("4_y6sft")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.713726)
+
+[node name="Control" parent="." instance=ExtResource("7_ajxib")]
+layout_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -214.5
+offset_top = 35.0
+offset_right = 214.5
+offset_bottom = 92.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("1_xfvoa")
+theme_override_font_sizes/normal_font_size = 44
+text = "choose a tower"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(126, 298.969)
+scale = Vector2(0.249505, 0.247338)
+sprite_frames = SubResource("SpriteFrames_032fp")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 209.0
+offset_top = 274.0
+offset_right = 560.0
+offset_bottom = 330.0
+theme_override_fonts/normal_font = ExtResource("1_xfvoa")
+theme_override_font_sizes/normal_font_size = 11
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla orci in dui eleifend varius. "
+
+[node name="closeMenuBttn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 579.0
+offset_top = 21.0
+offset_right = 615.0
+offset_bottom = 57.0
+theme_override_fonts/font = ExtResource("1_xfvoa")
+theme_override_font_sizes/font_size = 22
+text = "X"
+
+[node name="GridContainer" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(450, 230)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -75.0
+offset_right = 225.0
+offset_bottom = 155.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 12
+columns = 3
+
+[connection signal="pressed" from="closeMenuBttn" to="." method="_on_close_menu_bttn_pressed"]
