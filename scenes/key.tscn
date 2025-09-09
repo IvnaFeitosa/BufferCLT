@@ -76,7 +76,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node2D"]
+[node name="Key" type="PathFollow2D"]
+rotates = false
+loop = false
 script = ExtResource("1_fttkb")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
