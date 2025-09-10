@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0h1mfcqml6i4"]
+
+[ext_resource type="Script" uid="uid://cdpwsm4pbm8jn" path="res://title_screen.gd" id="1_pkhjh"]
+[ext_resource type="Texture2D" uid="uid://drqt51cc4bce0" path="res://assets/background_menu.png" id="2_1xr1c"]
+[ext_resource type="FontFile" uid="uid://0vaspj58mr76" path="res://assets/fonts/retro.ttf" id="3_1xr1c"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_pkhjh")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 637.0
+offset_bottom = 358.0
+texture = ExtResource("2_1xr1c")
+expand_mode = 3
+
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.4
+anchor_top = 0.4
+anchor_right = 1.4
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = 202.0
+offset_right = 74.0
+offset_bottom = 299.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="LabelStart" type="Label" parent="Menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.756863, 0, 1)
+theme_override_fonts/font = ExtResource("3_1xr1c")
+theme_override_font_sizes/font_size = 14
+text = "Iniciar jogo"
+
+[node name="LabelContinue" type="Label" parent="Menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.756863, 0, 1)
+theme_override_fonts/font = ExtResource("3_1xr1c")
+theme_override_font_sizes/font_size = 14
+text = "continuar – fase 2"
+
+[node name="LabelSelect" type="Label" parent="Menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.756863, 0, 1)
+theme_override_fonts/font = ExtResource("3_1xr1c")
+theme_override_font_sizes/font_size = 14
+text = "selecionar fase"
+
+[node name="LabelExit" type="Label" parent="Menu"]
+z_index = 2
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.756863, 0, 1)
+theme_override_fonts/font = ExtResource("3_1xr1c")
+theme_override_font_sizes/font_size = 14
+text = "sair"
+
+[node name="Selector" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 216.0
+offset_right = 194.0
+offset_bottom = 241.0
+color = Color(0, 0.470588, 0, 0.239216)
