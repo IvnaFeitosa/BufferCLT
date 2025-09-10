@@ -3,8 +3,10 @@ extends Control
 var menu_items = []
 var selected_index = 0
 @onready var selector = $Selector
-
+@onready var background_img = $Background
 func _ready():
+	background_img.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+
 	menu_items = $Menu.get_children()
 	update_selection()
 
@@ -21,10 +23,10 @@ func _input(event):
 func update_selection():
 	for i in range(menu_items.size()):
 		if i == selected_index:
-			menu_items[i].add_theme_color_override("font_color", Color.GREEN)
+			menu_items[i].add_theme_color_override("font_color", Color.WHITE)
 			selector.position.y = menu_items[i].global_position.y
 		else:
-			menu_items[i].add_theme_color_override("font_color", Color.WEB_GREEN)
+			menu_items[i].add_theme_color_override("font_color", Color.BLACK)
 
 func execute_option():
 	match selected_index:

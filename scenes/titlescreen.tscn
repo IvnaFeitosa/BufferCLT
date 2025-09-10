@@ -1,88 +1,82 @@
 [gd_scene load_steps=6 format=3 uid="uid://datx87lhmx7w5"]
 
-[ext_resource type="Script" uid="uid://baup2ouo0a7ra" path="res://scripts/titlescreen.gd" id="1_6d6rd"]
-[ext_resource type="FontFile" uid="uid://0vaspj58mr76" path="res://assets/fonts/retro.ttf" id="3_tt55a"]
+[ext_resource type="Script" uid="uid://cdpwsm4pbm8jn" path="res://scripts/title_screen.gd" id="1_iul6a"]
+[ext_resource type="Texture2D" uid="uid://drqt51cc4bce0" path="res://assets/background_menu.png" id="2_uxtqq"]
+[ext_resource type="FontFile" uid="uid://0vaspj58mr76" path="res://assets/fonts/retro.ttf" id="3_imref"]
 
-[sub_resource type="Animation" id="Animation_6d6rd"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:theme_override_colors/default_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
-}
+[sub_resource type="Gradient" id="Gradient_iul6a"]
+offsets = PackedFloat32Array(0.480519, 0.88961)
+colors = PackedColorArray(0.156863, 0.705882, 0.360784, 1, 1, 1, 1, 0)
 
-[sub_resource type="Animation" id="Animation_ji010"]
-resource_name = "flick"
-length = 0.5
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:theme_override_colors/default_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
-}
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uxtqq"]
+gradient = SubResource("Gradient_iul6a")
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3jj3l"]
-_data = {
-&"RESET": SubResource("Animation_6d6rd"),
-&"flick": SubResource("Animation_ji010")
-}
+[node name="titleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_iul6a")
 
-[node name="titlescreen" type="Node2D"]
-script = ExtResource("1_6d6rd")
+[node name="Background" type="TextureRect" parent="."]
+texture_filter = 4
+texture_repeat = 1
+layout_mode = 0
+offset_right = 637.0
+offset_bottom = 358.0
+texture = ExtResource("2_uxtqq")
+expand_mode = 3
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Selector" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 218.0
+offset_right = 220.0
+offset_bottom = 234.0
+texture = SubResource("GradientTexture1D_uxtqq")
+expand_mode = 1
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.4
+anchor_top = 0.4
+anchor_right = 1.4
 anchor_bottom = 1.0
+offset_left = -13.0
+offset_top = 202.0
+offset_right = 115.0
+offset_bottom = 271.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 12
 
-[node name="inputprompt" type="RichTextLabel" parent="CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -63.0
-offset_top = -7.0
-offset_right = 63.0
-offset_bottom = 7.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("3_tt55a")
-theme_override_font_sizes/normal_font_size = 11
-text = "press any button"
-fit_content = true
+[node name="LabelStart" type="Label" parent="Menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.756863, 0, 1)
+theme_override_fonts/font = ExtResource("3_imref")
+theme_override_font_sizes/font_size = 11
+text = "iniciar jogo"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/inputprompt"]
-libraries = {
-&"": SubResource("AnimationLibrary_3jj3l")
-}
-autoplay = "flick"
+[node name="LabelContinue" type="Label" parent="Menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.756863, 0, 1)
+theme_override_fonts/font = ExtResource("3_imref")
+theme_override_font_sizes/font_size = 11
+text = "continuar"
 
-[node name="gamename" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 477.0
-offset_bottom = 60.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("3_tt55a")
-theme_override_font_sizes/normal_font_size = 22
-text = "bufferclt pre-pre-pre-pre-alpha"
+[node name="LabelSelect" type="Label" parent="Menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.756863, 0, 1)
+theme_override_fonts/font = ExtResource("3_imref")
+theme_override_font_sizes/font_size = 11
+text = "selecionar fase"
+
+[node name="LabelExit" type="Label" parent="Menu"]
+z_index = 2
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.756863, 0, 1)
+theme_override_fonts/font = ExtResource("3_imref")
+theme_override_font_sizes/font_size = 11
+text = "sair"
