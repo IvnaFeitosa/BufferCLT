@@ -120,7 +120,6 @@ animations = [{
 rotates = false
 loop = false
 script = ExtResource("1_fttkb")
-SPEED = 20.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(-1, -2)

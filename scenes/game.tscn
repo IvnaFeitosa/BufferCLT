@@ -126,6 +126,6 @@ h_offset = 10.0
 v_offset = 5.0
 
 [node name="Key3" parent="Path2D" instance=ExtResource("2_yqjtg")]
-position = Vector2(169, 301)
+position = Vector2(155.381, 336.175)
 progress = 29.0739
 h_offset = -10.0
