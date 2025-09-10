@@ -1,5 +1,5 @@
 extends PathFollow2D
-@export var SPEED = 40.0
+@export var SPEED = 200.0
 @export var HP = 2
 @onready var animatedSprite = $AnimatedSprite2D
 var previous_pos: Vector2
