@@ -116,9 +116,6 @@ shape = SubResource("WorldBoundaryShape2D_iywne")
 curve = SubResource("Curve2D_gee14")
 
 [node name="Key" parent="Path2D" instance=ExtResource("2_yqjtg")]
-position = Vector2(157, 364)
-
-[node name="Key2" parent="Path2D" instance=ExtResource("2_yqjtg")]
-position = Vector2(167, 344)
-h_offset = 10.0
-v_offset = -20.0
+position = Vector2(165.381, 336.175)
+progress = 29.0739
+SPEED = 100.0
