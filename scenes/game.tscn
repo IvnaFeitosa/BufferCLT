@@ -80,7 +80,7 @@ theme_override_font_sizes/normal_font_size = 11
 text = "1/8"
 
 [node name="worldBoundary" type="StaticBody2D" parent="."]
-collision_layer = 2
+collision_layer = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="worldBoundary"]
 position = Vector2(337, -356)
@@ -88,14 +88,14 @@ rotation = -3.15032
 shape = SubResource("WorldBoundaryShape2D_yqjtg")
 
 [node name="worldBoundary2" type="StaticBody2D" parent="."]
-collision_layer = 2
+collision_layer = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="worldBoundary2"]
 position = Vector2(12, 143)
 shape = SubResource("WorldBoundaryShape2D_lnu2h")
 
 [node name="worldBoundary3" type="StaticBody2D" parent="."]
-collision_layer = 2
+collision_layer = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="worldBoundary3"]
 position = Vector2(310, 356)
@@ -104,7 +104,7 @@ shape = SubResource("WorldBoundaryShape2D_lbhrr")
 
 [node name="worldBoundary4" type="StaticBody2D" parent="."]
 position = Vector2(-1, -4)
-collision_layer = 2
+collision_layer = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="worldBoundary4"]
 position = Vector2(3, 197)
@@ -118,4 +118,14 @@ curve = SubResource("Curve2D_gee14")
 [node name="Key" parent="Path2D" instance=ExtResource("2_yqjtg")]
 position = Vector2(165.381, 336.175)
 progress = 29.0739
-SPEED = 100.0
+
+[node name="Key2" parent="Path2D" instance=ExtResource("2_yqjtg")]
+position = Vector2(175.381, 341.175)
+progress = 29.0739
+h_offset = 10.0
+v_offset = 5.0
+
+[node name="Key3" parent="Path2D" instance=ExtResource("2_yqjtg")]
+position = Vector2(155.381, 336.175)
+progress = 29.0739
+h_offset = -10.0

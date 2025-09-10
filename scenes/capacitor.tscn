@@ -1,9 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://de67ma1t83xvb"]
+[gd_scene load_steps=7 format=3 uid="uid://de67ma1t83xvb"]
 
+[ext_resource type="Script" uid="uid://bnhedkmsyemdy" path="res://scripts/capacitor.gd" id="1_jywr7"]
 [ext_resource type="Texture2D" uid="uid://bxbeqe7jbng5q" path="res://assets/capacitor.png" id="1_lv1wq"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_jywr7"]
-radius = 63.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lv1wq"]
 atlas = ExtResource("1_lv1wq")
@@ -27,12 +25,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_jnthu"]
+radius = 71.0282
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("CircleShape2D_jywr7")
+[node name="Capacitor" type="Node2D"]
+script = ExtResource("1_jywr7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jnthu")
@@ -48,3 +45,16 @@ sprite_frames = SubResource("SpriteFrames_jnthu")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.539489
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_jnthu")
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

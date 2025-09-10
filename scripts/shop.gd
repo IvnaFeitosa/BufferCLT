@@ -19,6 +19,7 @@ func _on_close_menu_bttn_pressed() -> void:
 	
 func _on_tower_bought(data: TowerData):
 	var tower = data.scene.instantiate()
+	tower._setup(data)
 	tower.position = current_spot.position
 	tower.position.y -= 20
 

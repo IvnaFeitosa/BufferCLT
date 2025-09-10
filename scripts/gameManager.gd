@@ -1,6 +1,6 @@
 extends Node
-var money: int = 155
-var health: int  = 9
+var money: int = 1500
+var health: int  = 10
 signal money_changed(new_value: int)
 signal health_changed(new_value: int)
 signal died()
