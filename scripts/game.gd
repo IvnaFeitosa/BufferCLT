@@ -13,7 +13,7 @@ func _ready() -> void:
 	waves = stage.waves
 	#flexing my abilities to be the dumbest person alive
 	#timer.start(waves[gameManager.current_wave].enemy_sequences[current_sequence].time)
-	timer.start()
+	gameManager.change_wave()
 
 func _on_spawn_timer_timeout() -> void:
 	var enemy_sequence = waves[gameManager.current_wave].enemy_sequences[current_sequence]

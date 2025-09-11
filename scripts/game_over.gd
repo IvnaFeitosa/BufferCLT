@@ -13,7 +13,7 @@ func _ready():
 	arrow.text = "▶"
 	add_child(arrow)
 
-	arrow.add_theme_color_override("font_color", Color8(122, 255, 156, 255))
+	arrow.add_theme_color_override("font_color", Color8(136,199,113,255))
 	update_arrow_position()
 
 
@@ -36,7 +36,7 @@ func update_arrow_position():
 
 	var selected_label = options[selected_index]
 
-	selected_label.add_theme_color_override("font_color", Color8(122, 255, 156, 255))
+	selected_label.add_theme_color_override("font_color",  Color8(136,199,113,255))
 
 
 	var pos = selected_label.get_global_position()

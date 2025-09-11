@@ -3,7 +3,7 @@ var stage_resource = preload("res://scripts/stage0.tres")
 var money: int = 300
 var health: int  = 10
 var stage: int = 0
-var current_wave: int = 0
+var current_wave: int = -1
 var max_wave = stage_resource.waves.size()
 #var all_enemies_from_wave_spawned : bool = false
 signal wave_changed(new_value: int)
