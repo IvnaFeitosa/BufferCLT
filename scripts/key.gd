@@ -1,10 +1,11 @@
 extends PathFollow2D
 class_name Key
 const SPEED = 100.0
-const money_reward = 25
+const money_reward = 15
 @export var HP = 1
 @onready var animatedSprite = $AnimatedSprite2D
 @onready var audioSFX = $AudioStreamPlayer
+var rng = RandomNumberGenerator.new()
 var previous_pos: Vector2
 
 func _ready() -> void:

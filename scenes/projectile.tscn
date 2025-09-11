@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bp7easjomxkio"]
+[gd_scene load_steps=5 format=3 uid="uid://bp7easjomxkio"]
 
 [ext_resource type="Script" uid="uid://b5bwfmgdgy03p" path="res://scripts/projectile.gd" id="1_q3m7n"]
 [ext_resource type="Texture2D" uid="uid://dvcqxsqh33url" path="res://assets/capacitor_projectile.png" id="2_q3m7n"]
+[ext_resource type="Texture2D" uid="uid://cxfcf4pb8prix" path="res://assets/light_node.png" id="3_softn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q3m7n"]
 size = Vector2(10, 10)
@@ -20,6 +21,13 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_q3m7n")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -1.19209e-07)
+scale = Vector2(6.75469, 6.50938)
+energy = 2.55
+texture = ExtResource("3_softn")
+texture_scale = 0.01
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
