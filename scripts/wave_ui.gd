@@ -8,7 +8,7 @@ func _ready() -> void:
 	wave_counter.text = str(gameManager.current_wave+1) + "/" + str(gameManager.max_wave)
 func _on_wave_change(new_wave):
 	wave_counter.text = str(new_wave+1) + "/" + str(gameManager.max_wave)
-	warning.text = "WAVE" + str(new_wave+1) + "!"
-	warning_shadow.text = "WAVE" + str(new_wave+1) + "!"
+	warning.text = "WAVE " + str(new_wave+1) + "!"
+	warning_shadow.text = "WAVE " + str(new_wave+1) + "!"
 	anim_text.play("text anim")
 	

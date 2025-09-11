@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diu3wnwcaw1a7"
-path="res://.godot/imported/ChatGPT Image Sep 9, 2025, 11_33_26 PM.png-620dcee00d9f43e95c5f6ba4151099b9.ctex"
+uid="uid://dvcqxsqh33url"
+path="res://.godot/imported/capacitor_projectile.png-3b32f90129c9f5040f3348990c2b1b3b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ChatGPT Image Sep 9, 2025, 11_33_26 PM.png"
-dest_files=["res://.godot/imported/ChatGPT Image Sep 9, 2025, 11_33_26 PM.png-620dcee00d9f43e95c5f6ba4151099b9.ctex"]
+source_file="res://assets/capacitor_projectile.png"
+dest_files=["res://.godot/imported/capacitor_projectile.png-3b32f90129c9f5040f3348990c2b1b3b.ctex"]
 
 [params]
 
