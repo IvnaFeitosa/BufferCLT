@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="TowerData" load_steps=5 format=3 uid="uid://bi1sydr6m6td2"]
+[gd_resource type="Resource" script_class="TowerData" load_steps=6 format=3 uid="uid://bi1sydr6m6td2"]
 
 [ext_resource type="Texture2D" uid="uid://cxllewm0kqxd4" path="res://assets/ui/capacitor_icon.png" id="1_hukck"]
 [ext_resource type="Script" uid="uid://dcvdfpsvpf3h1" path="res://scripts/towers.gd" id="1_kieas"]
 [ext_resource type="PackedScene" uid="uid://bp7easjomxkio" path="res://scenes/projectile.tscn" id="2_265ut"]
 [ext_resource type="PackedScene" uid="uid://de67ma1t83xvb" path="res://scenes/capacitor.tscn" id="2_hukck"]
+[ext_resource type="AudioStream" uid="uid://dx1lnoqbrdb4b" path="res://assets/sounds/capacitor_shoot_sound.wav" id="3_fqt5s"]
 
 [resource]
 script = ExtResource("1_kieas")
@@ -14,4 +15,5 @@ scene = ExtResource("2_hukck")
 projectile = ExtResource("2_265ut")
 projectile_speed = 250
 fire_rate = 0.7
+projetile_sound = ExtResource("3_fqt5s")
 metadata/_custom_type_script = "uid://dcvdfpsvpf3h1"

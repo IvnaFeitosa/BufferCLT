@@ -1,6 +1,8 @@
 extends Node2D
 var data: TowerData
-	
+@onready var sfx = $sfx
+func _ready():
+	sfx.stream = data.projetile_sound
 func _setup(tower_data:TowerData):
 	data = tower_data
 	$ShootTimer.wait_time = data.fire_rate
@@ -19,4 +21,5 @@ func _on_shoot_timer_timeout() -> void:
 		bullet.position = self.position
 		var dir = (body.global_position - self.global_position)
 		bullet._setup(dir,data.projectile_speed, 1)
+		sfx.play()
 		self.get_parent().add_child(bullet)

@@ -7,3 +7,4 @@ class_name TowerData
 @export var projectile: PackedScene
 @export var projectile_speed: int
 @export var fire_rate: float
+@export var projetile_sound: AudioStream
