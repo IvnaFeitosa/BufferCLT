@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6wb6f88gf6g6"]
+[gd_scene load_steps=13 format=3 uid="uid://c6wb6f88gf6g6"]
 
 [ext_resource type="Script" uid="uid://tx5yroxmqdu8" path="res://scripts/game.gd" id="1_gee14"]
 [ext_resource type="Texture2D" uid="uid://b0lcuh1ru0ih8" path="res://assets/map.png" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://dis2kx0wtmx6e" path="res://scripts/stage.gd" id="2_vtaks"]
 [ext_resource type="Resource" uid="uid://gvrecylaqjff" path="res://scripts/stage0.tres" id="3_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://bcib8vhasn70" path="res://scenes/gameManager.tscn" id="4_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://0hs443fuwjmt" path="res://scenes/heart_ui.tscn" id="4_gee14"]
+[ext_resource type="PackedScene" uid="uid://dijwvj1x1xcp0" path="res://scenes/Spawner.tscn" id="5_vtaks"]
+[ext_resource type="Script" uid="uid://dk3xibmc1400u" path="res://scripts/spawner.gd" id="6_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://dr0d5mpsyia50" path="res://scenes/tower_spot.tscn" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://bmjcamwvyw2ev" path="res://scenes/wave_ui.tscn" id="7_gee14"]
 [ext_resource type="PackedScene" uid="uid://g8pux5icx2i" path="res://scenes/coin_ui.tscn" id="8_gee14"]
@@ -17,7 +20,8 @@ point_count = 8
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_gee14")
-stages = Array[ExtResource("2_vtaks")]([ExtResource("3_kvpfn")])
+
+[node name="GameManager" parent="." instance=ExtResource("4_0tnpc")]
 
 [node name="mapa" type="TextureRect" parent="."]
 offset_right = 640.0
@@ -56,9 +60,13 @@ metadata/_edit_use_anchors_ = true
 [node name="CoinUi" parent="." instance=ExtResource("8_gee14")]
 metadata/_edit_use_anchors_ = true
 
-[node name="StagePath" type="Path2D" parent="."]
+[node name="Spawner" parent="." instance=ExtResource("5_vtaks")]
+script = ExtResource("6_kvpfn")
+stages = Array[ExtResource("2_vtaks")]([ExtResource("3_kvpfn")])
+
+[node name="SpawnTimer" type="Timer" parent="Spawner"]
+
+[node name="StagePath" type="Path2D" parent="Spawner"]
 curve = SubResource("Curve2D_gee14")
 
-[node name="SpawnTimer" type="Timer" parent="."]
-
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]
