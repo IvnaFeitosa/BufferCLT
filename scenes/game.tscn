@@ -1,27 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://c6wb6f88gf6g6"]
+[gd_scene load_steps=10 format=3 uid="uid://c6wb6f88gf6g6"]
 
 [ext_resource type="Script" uid="uid://tx5yroxmqdu8" path="res://scripts/game.gd" id="1_gee14"]
 [ext_resource type="Texture2D" uid="uid://b0lcuh1ru0ih8" path="res://assets/map.png" id="1_uwrxv"]
-[ext_resource type="PackedScene" uid="uid://blcwbwf17dfcn" path="res://scenes/key.tscn" id="2_yqjtg"]
-[ext_resource type="FontFile" uid="uid://0vaspj58mr76" path="res://assets/fonts/retro.ttf" id="3_iywne"]
-[ext_resource type="Texture2D" uid="uid://577xnwojecpu" path="res://assets/ui/flag_ui.png" id="3_lbhrr"]
+[ext_resource type="Script" uid="uid://dis2kx0wtmx6e" path="res://scripts/stage.gd" id="2_vtaks"]
+[ext_resource type="Resource" uid="uid://gvrecylaqjff" path="res://scripts/stage0.tres" id="3_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://0hs443fuwjmt" path="res://scenes/heart_ui.tscn" id="4_gee14"]
 [ext_resource type="PackedScene" uid="uid://dr0d5mpsyia50" path="res://scenes/tower_spot.tscn" id="6_p57ef"]
+[ext_resource type="PackedScene" uid="uid://bmjcamwvyw2ev" path="res://scenes/wave_ui.tscn" id="7_gee14"]
 [ext_resource type="PackedScene" uid="uid://g8pux5icx2i" path="res://scenes/coin_ui.tscn" id="8_gee14"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
-distance = 358.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lnu2h"]
-normal = Vector2(-0.999841, -0.0178543)
-distance = 12.2537
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lbhrr"]
-normal = Vector2(0, 1)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iywne"]
-normal = Vector2(1, 0)
-distance = 642.063
 
 [sub_resource type="Curve2D" id="Curve2D_gee14"]
 _data = {
@@ -31,6 +17,7 @@ point_count = 8
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_gee14")
+stages = Array[ExtResource("2_vtaks")]([ExtResource("3_kvpfn")])
 
 [node name="mapa" type="TextureRect" parent="."]
 offset_right = 640.0
@@ -38,6 +25,7 @@ offset_bottom = 360.0
 mouse_filter = 2
 texture = ExtResource("1_uwrxv")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="tower_spot" parent="." instance=ExtResource("6_p57ef")]
 position = Vector2(85, 163)
@@ -61,71 +49,16 @@ position = Vector2(251, 73)
 position = Vector2(435, 71)
 
 [node name="HeartUi" parent="." instance=ExtResource("4_gee14")]
+metadata/_edit_use_anchors_ = true
 
-[node name="wave_ui" type="TextureRect" parent="."]
-offset_left = 91.0
-offset_top = 18.0
-offset_right = 113.0
-offset_bottom = 38.0
-texture = ExtResource("3_lbhrr")
+[node name="WaveUi" parent="." instance=ExtResource("7_gee14")]
 
-[node name="wave_counter" type="RichTextLabel" parent="."]
-offset_left = 115.0
-offset_top = 20.0
-offset_right = 165.0
-offset_bottom = 37.0
-theme_override_colors/default_color = Color(0.811765, 1, 0.698039, 1)
-theme_override_fonts/normal_font = ExtResource("3_iywne")
-theme_override_font_sizes/normal_font_size = 11
-text = "1/8"
+[node name="CoinUi" parent="." instance=ExtResource("8_gee14")]
+metadata/_edit_use_anchors_ = true
 
-[node name="worldBoundary" type="StaticBody2D" parent="."]
-collision_layer = 128
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="worldBoundary"]
-position = Vector2(337, -356)
-rotation = -3.15032
-shape = SubResource("WorldBoundaryShape2D_yqjtg")
-
-[node name="worldBoundary2" type="StaticBody2D" parent="."]
-collision_layer = 128
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="worldBoundary2"]
-position = Vector2(12, 143)
-shape = SubResource("WorldBoundaryShape2D_lnu2h")
-
-[node name="worldBoundary3" type="StaticBody2D" parent="."]
-collision_layer = 128
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="worldBoundary3"]
-position = Vector2(310, 356)
-rotation = -3.14159
-shape = SubResource("WorldBoundaryShape2D_lbhrr")
-
-[node name="worldBoundary4" type="StaticBody2D" parent="."]
-position = Vector2(-1, -4)
-collision_layer = 128
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="worldBoundary4"]
-position = Vector2(3, 197)
-shape = SubResource("WorldBoundaryShape2D_iywne")
-
-[node name="coin_ui" parent="." instance=ExtResource("8_gee14")]
-
-[node name="Path2D" type="Path2D" parent="."]
+[node name="StagePath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_gee14")
 
-[node name="Key" parent="Path2D" instance=ExtResource("2_yqjtg")]
-position = Vector2(165.381, 336.175)
-progress = 29.0739
+[node name="SpawnTimer" type="Timer" parent="."]
 
-[node name="Key2" parent="Path2D" instance=ExtResource("2_yqjtg")]
-position = Vector2(175.381, 341.175)
-progress = 29.0739
-h_offset = 10.0
-v_offset = 5.0
-
-[node name="Key3" parent="Path2D" instance=ExtResource("2_yqjtg")]
-position = Vector2(155.381, 336.175)
-progress = 29.0739
-h_offset = -10.0
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

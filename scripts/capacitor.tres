@@ -12,6 +12,6 @@ cost = "$100"
 icon = ExtResource("1_hukck")
 scene = ExtResource("2_hukck")
 projectile = ExtResource("2_265ut")
-projectile_speed = 80
+projectile_speed = 160
 fire_rate = 0.5
 metadata/_custom_type_script = "uid://dcvdfpsvpf3h1"

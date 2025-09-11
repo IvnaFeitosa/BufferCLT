@@ -1,4 +1,5 @@
 extends PathFollow2D
+class_name Key
 const SPEED = 50.0
 @export var HP = 2
 @onready var animatedSprite = $AnimatedSprite2D
@@ -23,17 +24,18 @@ func _physics_process(delta: float) -> void:
 			_set_animation("upanim")
 	if progress_ratio >= 0.98:
 		gameManager.take_damage(1)
-		queue_free() 
-		
-func take_damage(dmg: int):
-	print("damage took" + str(dmg))
-	HP -= dmg
-	if HP <= 0:
 		die()
 		
-func die():
-	gameManager.add_money(25)
-	queue_free()
+func take_damage(dmg: int):
+	HP -= dmg
+	if HP <= 0:
+		gameManager.add_money(25)
+		die()
+		
+func die():	
+	remove_from_group("current_wave_enemies")
+	gameManager.check_for_end_of_wave()
+	call_deferred("queue_free")
 	
 func _set_animation(anim_name: String):
 	if animatedSprite.animation != anim_name:

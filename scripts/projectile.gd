@@ -5,7 +5,6 @@ extends Node2D
 
 func _setup(_direction:Vector2, _speed:float, _dmg: int):
 	direction = _direction.normalized()
-	print(direction)
 	speed = _speed
 	dmg = _dmg
 func _ready():

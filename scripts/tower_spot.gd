@@ -9,7 +9,7 @@ func _on_static_body_2d_mouse_entered() -> void:
 func _on_static_body_2d_mouse_exited() -> void:
 	spotlight.visible = false
 
-func _on_static_body_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_static_body_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if (event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT):
 		var shop = shop_scene.instantiate()
 		shop.set_spot(self)

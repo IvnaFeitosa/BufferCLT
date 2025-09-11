@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="Stage" load_steps=10 format=3 uid="uid://gvrecylaqjff"]
+
+[ext_resource type="Script" uid="uid://dis2kx0wtmx6e" path="res://scripts/stage.gd" id="1_bqy62"]
+[ext_resource type="Script" uid="uid://cb244g8qi5nma" path="res://scripts/wave.gd" id="2_0kwdk"]
+[ext_resource type="Script" uid="uid://c31vrf6samx0g" path="res://scripts/enemy_sequence.gd" id="3_0kwdk"]
+
+[sub_resource type="Resource" id="Resource_0kwdk"]
+script = ExtResource("3_0kwdk")
+name = "Key"
+amount = 3
+time = 1.0
+metadata/_custom_type_script = "uid://c31vrf6samx0g"
+
+[sub_resource type="Resource" id="Resource_2ftth"]
+script = ExtResource("3_0kwdk")
+name = "Key"
+amount = 5
+time = 4.0
+metadata/_custom_type_script = "uid://c31vrf6samx0g"
+
+[sub_resource type="Resource" id="Resource_o68ah"]
+script = ExtResource("2_0kwdk")
+enemy_sequences = Array[ExtResource("3_0kwdk")]([SubResource("Resource_0kwdk"), SubResource("Resource_2ftth")])
+metadata/_custom_type_script = "uid://cb244g8qi5nma"
+
+[sub_resource type="Resource" id="Resource_rxjwl"]
+script = ExtResource("3_0kwdk")
+name = "Key"
+amount = 7
+time = 1.0
+metadata/_custom_type_script = "uid://c31vrf6samx0g"
+
+[sub_resource type="Resource" id="Resource_4kv6o"]
+script = ExtResource("3_0kwdk")
+name = "Key"
+amount = 5
+time = 3.0
+metadata/_custom_type_script = "uid://c31vrf6samx0g"
+
+[sub_resource type="Resource" id="Resource_d1bkw"]
+script = ExtResource("2_0kwdk")
+enemy_sequences = Array[ExtResource("3_0kwdk")]([SubResource("Resource_rxjwl"), SubResource("Resource_4kv6o")])
+metadata/_custom_type_script = "uid://cb244g8qi5nma"
+
+[resource]
+script = ExtResource("1_bqy62")
+waves = Array[ExtResource("2_0kwdk")]([SubResource("Resource_o68ah"), SubResource("Resource_d1bkw")])
+metadata/_custom_type_script = "uid://dis2kx0wtmx6e"
