@@ -1,4 +1,142 @@
-[gd_scene format=3 uid="uid://cxtvdmrgmqnnu"]
+[gd_scene load_steps=15 format=3 uid="uid://cxtvdmrgmqnnu"]
+
+[ext_resource type="Script" uid="uid://co7mu1duifpxd" path="res://scripts/results.gd" id="1_ph3j5"]
+[ext_resource type="Material" uid="uid://bhhndo7xd78gv" path="res://assets/shaders/blur.tres" id="2_s58my"]
+[ext_resource type="Texture2D" uid="uid://dqme30oawpqwg" path="res://assets/ui/clipboard.png" id="3_s58my"]
+[ext_resource type="FontFile" uid="uid://0vaspj58mr76" path="res://assets/fonts/retro.ttf" id="4_s58my"]
+[ext_resource type="Texture2D" uid="uid://bel5litf1nq5o" path="res://assets/ui/sgrade.png" id="6_2q2pa"]
+
+[sub_resource type="Animation" id="Animation_ph3j5"]
+resource_name = "blur"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/blur_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [9.5e-08, 1.8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Clipboard:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(105, 360), Vector2(105, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_2q2pa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/blur_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Clipboard:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 360)]
+}
+
+[sub_resource type="Animation" id="Animation_s58my"]
+resource_name = "grade_falling"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ujvko"]
+_data = {
+&"RESET": SubResource("Animation_2q2pa"),
+&"blur": SubResource("Animation_ph3j5"),
+&"grade_falling": SubResource("Animation_s58my")
+}
+
+[sub_resource type="Gradient" id="Gradient_0tnpc"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_44tbk"]
+gradient = SubResource("Gradient_0tnpc")
+
+[sub_resource type="Animation" id="Animation_ujvko"]
+resource_name = "grade_falling"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Grade:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.366667, 0.433333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2.2, 2.2), Vector2(2, 2), Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Grade:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_44tbk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Grade:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Grade:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6uev3"]
+_data = {
+&"RESET": SubResource("Animation_44tbk"),
+&"grade_falling": SubResource("Animation_ujvko")
+}
 
 [node name="Results" type="Control"]
 layout_mode = 3
@@ -7,3 +145,127 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ph3j5")
+
+[node name="StartUp" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Blur")
+libraries = {
+&"": SubResource("AnimationLibrary_ujvko")
+}
+autoplay = "blur"
+
+[node name="Blur" type="TextureRect" parent="."]
+material = ExtResource("2_s58my")
+offset_right = 640.0
+offset_bottom = 360.0
+texture = SubResource("GradientTexture1D_44tbk")
+
+[node name="Clipboard" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 360.0
+offset_right = 500.0
+offset_bottom = 680.0
+texture = ExtResource("3_s58my")
+
+[node name="results" type="RichTextLabel" parent="Clipboard"]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 78.0
+offset_right = 291.0
+offset_bottom = 129.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_s58my")
+theme_override_font_sizes/normal_font_size = 33
+text = "results"
+
+[node name="towers placed label" type="RichTextLabel" parent="Clipboard"]
+offset_left = 62.0
+offset_top = 129.0
+offset_right = 354.0
+offset_bottom = 145.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_s58my")
+theme_override_font_sizes/normal_font_size = 11
+text = "towers placed................................................."
+
+[node name="enemies killed" type="RichTextLabel" parent="Clipboard"]
+offset_left = 62.0
+offset_top = 148.0
+offset_right = 354.0
+offset_bottom = 164.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_s58my")
+theme_override_font_sizes/normal_font_size = 11
+text = "enemies killed.................................................."
+
+[node name="money made" type="RichTextLabel" parent="Clipboard"]
+offset_left = 62.0
+offset_top = 167.0
+offset_right = 354.0
+offset_bottom = 183.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_s58my")
+theme_override_font_sizes/normal_font_size = 11
+text = "money made......................................................"
+
+[node name="final grade" type="RichTextLabel" parent="Clipboard"]
+offset_left = 62.0
+offset_top = 283.0
+offset_right = 259.0
+offset_bottom = 299.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_s58my")
+theme_override_font_sizes/normal_font_size = 11
+text = "final grade................................"
+
+[node name="towersNum" type="Label" parent="Clipboard"]
+layout_mode = 0
+offset_left = 334.0
+offset_top = 127.0
+offset_right = 374.0
+offset_bottom = 150.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_s58my")
+theme_override_font_sizes/font_size = 11
+text = "0"
+
+[node name="enemiesNum" type="Label" parent="Clipboard"]
+offset_left = 334.0
+offset_top = 147.0
+offset_right = 374.0
+offset_bottom = 170.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_s58my")
+theme_override_font_sizes/font_size = 11
+text = "0"
+
+[node name="moneyNum" type="Label" parent="Clipboard"]
+offset_left = 334.0
+offset_top = 167.0
+offset_right = 374.0
+offset_bottom = 190.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_s58my")
+theme_override_font_sizes/font_size = 11
+text = "0"
+
+[node name="GradeFalling" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6uev3")
+}
+
+[node name="Grade" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+position = Vector2(408, 296)
+texture = ExtResource("6_2q2pa")
+
+[node name="Grade2" type="Sprite2D" parent="Grade"]
+modulate = Color(6.257e-07, 0, 0.3427, 0.356863)
+z_as_relative = false
+position = Vector2(5, 2)
+texture = ExtResource("6_2q2pa")
+
+[connection signal="animation_finished" from="StartUp" to="." method="_on_start_up_animation_finished"]
+[connection signal="animation_finished" from="GradeFalling" to="." method="_on_grade_falling_animation_finished"]

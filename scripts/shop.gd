@@ -22,7 +22,7 @@ func _on_tower_bought(data: TowerData):
 	tower._setup(data)
 	tower.position = current_spot.position
 	tower.position.y -= 20
-
+	gameManager.add_tower_bought(1)
 	current_spot.get_parent().add_child(tower)
 	current_spot.queue_free();
 	queue_free();

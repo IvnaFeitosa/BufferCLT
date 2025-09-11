@@ -30,6 +30,7 @@ func take_damage(dmg: int):
 	HP -= dmg
 	if HP <= 0:
 		gameManager.add_money(25)
+		gameManager.add_enemy_killed(1)
 		die()
 		
 func die():	
