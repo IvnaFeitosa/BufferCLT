@@ -57,13 +57,15 @@ offset_bottom = 40.0
 script = ExtResource("1_iul6a")
 
 [node name="Background" type="TextureRect" parent="."]
-texture_filter = 4
 texture_repeat = 1
 layout_mode = 0
-offset_right = 625.079
-offset_bottom = 364.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 648.0
+offset_bottom = 378.0
 texture = ExtResource("2_uxtqq")
-expand_mode = 3
+expand_mode = 1
+stretch_mode = 4
 
 [node name="Selector" type="TextureRect" parent="."]
 layout_mode = 0

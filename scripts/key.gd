@@ -1,8 +1,8 @@
 extends PathFollow2D
 class_name Key
-const SPEED = 50.0
+const SPEED = 100.0
 const money_reward = 25
-@export var HP = 2
+@export var HP = 4
 @onready var animatedSprite = $AnimatedSprite2D
 var previous_pos: Vector2
 

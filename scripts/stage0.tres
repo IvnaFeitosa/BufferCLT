@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Stage" load_steps=10 format=3 uid="uid://gvrecylaqjff"]
+[gd_resource type="Resource" script_class="Stage" load_steps=15 format=3 uid="uid://gvrecylaqjff"]
 
 [ext_resource type="Script" uid="uid://dis2kx0wtmx6e" path="res://scripts/stage.gd" id="1_bqy62"]
 [ext_resource type="Script" uid="uid://cb244g8qi5nma" path="res://scripts/wave.gd" id="2_0kwdk"]
@@ -37,12 +37,45 @@ amount = 5
 time = 4.0
 metadata/_custom_type_script = "uid://c31vrf6samx0g"
 
+[sub_resource type="Resource" id="Resource_l2ls8"]
+script = ExtResource("3_0kwdk")
+name = "Key"
+amount = 8
+time = 6.0
+metadata/_custom_type_script = "uid://c31vrf6samx0g"
+
 [sub_resource type="Resource" id="Resource_d1bkw"]
 script = ExtResource("2_0kwdk")
-enemy_sequences = Array[ExtResource("3_0kwdk")]([SubResource("Resource_rxjwl"), SubResource("Resource_4kv6o")])
+enemy_sequences = Array[ExtResource("3_0kwdk")]([SubResource("Resource_rxjwl"), SubResource("Resource_4kv6o"), SubResource("Resource_l2ls8")])
+metadata/_custom_type_script = "uid://cb244g8qi5nma"
+
+[sub_resource type="Resource" id="Resource_612uo"]
+script = ExtResource("3_0kwdk")
+name = "Key"
+amount = 5
+time = 2.0
+metadata/_custom_type_script = "uid://c31vrf6samx0g"
+
+[sub_resource type="Resource" id="Resource_6lc1q"]
+script = ExtResource("3_0kwdk")
+name = "Key"
+amount = 7
+time = 3.0
+metadata/_custom_type_script = "uid://c31vrf6samx0g"
+
+[sub_resource type="Resource" id="Resource_v6xak"]
+script = ExtResource("3_0kwdk")
+name = "Key"
+amount = 8
+time = 6.0
+metadata/_custom_type_script = "uid://c31vrf6samx0g"
+
+[sub_resource type="Resource" id="Resource_1d86p"]
+script = ExtResource("2_0kwdk")
+enemy_sequences = Array[ExtResource("3_0kwdk")]([SubResource("Resource_612uo"), SubResource("Resource_6lc1q"), SubResource("Resource_v6xak")])
 metadata/_custom_type_script = "uid://cb244g8qi5nma"
 
 [resource]
 script = ExtResource("1_bqy62")
-waves = Array[ExtResource("2_0kwdk")]([SubResource("Resource_o68ah"), SubResource("Resource_d1bkw")])
+waves = Array[ExtResource("2_0kwdk")]([SubResource("Resource_o68ah"), SubResource("Resource_d1bkw"), SubResource("Resource_1d86p")])
 metadata/_custom_type_script = "uid://dis2kx0wtmx6e"

@@ -19,7 +19,7 @@ func add_money(new_val: int):
 	emit_signal("money_changed", money)
 	
 func spend_money(cost: int) -> bool:
-	if (money > cost):
+	if (money >= cost):
 		money -= cost
 		emit_signal("money_changed", money)
 		return true
