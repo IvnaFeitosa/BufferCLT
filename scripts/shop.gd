@@ -2,12 +2,14 @@ extends Control
 
 @export var tower_data: Array[TowerData]
 @export var button_scene: PackedScene
+@onready var sfx = $SFX
 var current_spot: Node = null
 
 func set_spot(spot: Node):
 	current_spot = spot
 
 func _ready() -> void:
+	sfx.play()
 	for data in tower_data:
 		var btn = button_scene.instantiate()
 		btn.setup(data)

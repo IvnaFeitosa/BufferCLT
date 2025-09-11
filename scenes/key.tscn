@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://blcwbwf17dfcn"]
+[gd_scene load_steps=21 format=3 uid="uid://blcwbwf17dfcn"]
 
 [ext_resource type="Script" uid="uid://dm66j3kftl0xe" path="res://scripts/key.gd" id="1_fttkb"]
 [ext_resource type="Texture2D" uid="uid://durwpdukmse2y" path="res://assets/key_back.png" id="2_fttkb"]
 [ext_resource type="Texture2D" uid="uid://bwgvwemxt6p13" path="res://assets/key_left.png" id="3_jcln5"]
 [ext_resource type="Texture2D" uid="uid://57cy5liwvba8" path="res://assets/key_front.png" id="3_wy8tx"]
 [ext_resource type="Texture2D" uid="uid://hiyxnfycircx" path="res://assets/key_right.png" id="4_b4qnb"]
+[ext_resource type="AudioStream" uid="uid://bjehc1wawycth" path="res://assets/sounds/key_killed.wav" id="6_b4qnb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fttkb"]
 size = Vector2(20, 18)
@@ -134,3 +135,7 @@ shape = SubResource("RectangleShape2D_fttkb")
 sprite_frames = SubResource("SpriteFrames_6t41w")
 animation = &"downanim"
 autoplay = "upanim"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_b4qnb")
+volume_db = 1.0

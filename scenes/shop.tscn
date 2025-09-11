@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d16827f4omtah"]
+[gd_scene load_steps=10 format=3 uid="uid://d16827f4omtah"]
 
 [ext_resource type="Script" uid="uid://dynfj3uwqcs27" path="res://scripts/shop.gd" id="1_032fp"]
 [ext_resource type="FontFile" uid="uid://0vaspj58mr76" path="res://assets/fonts/retro.ttf" id="1_xfvoa"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://bi1sydr6m6td2" path="res://scripts/capacitor.tres" id="3_ajxib"]
 [ext_resource type="PackedScene" uid="uid://d01u42mgic1tt" path="res://scenes/shopButton.tscn" id="4_y6sft"]
 [ext_resource type="PackedScene" uid="uid://g8pux5icx2i" path="res://scenes/coin_ui.tscn" id="7_ajxib"]
+[ext_resource type="AudioStream" uid="uid://i3dcybc4vr4i" path="res://assets/sounds/open_shop.wav" id="8_y6sft"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_032fp"]
 animations = [{
@@ -100,5 +101,8 @@ grow_vertical = 2
 theme_override_constants/h_separation = 30
 theme_override_constants/v_separation = 12
 columns = 3
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_y6sft")
 
 [connection signal="pressed" from="closeMenuBttn" to="." method="_on_close_menu_bttn_pressed"]

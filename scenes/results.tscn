@@ -1,10 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://cxtvdmrgmqnnu"]
+[gd_scene load_steps=17 format=3 uid="uid://cxtvdmrgmqnnu"]
 
 [ext_resource type="Script" uid="uid://co7mu1duifpxd" path="res://scripts/results.gd" id="1_ph3j5"]
 [ext_resource type="Material" uid="uid://bhhndo7xd78gv" path="res://assets/shaders/blur.tres" id="2_s58my"]
 [ext_resource type="Texture2D" uid="uid://dqme30oawpqwg" path="res://assets/ui/clipboard.png" id="3_s58my"]
 [ext_resource type="FontFile" uid="uid://0vaspj58mr76" path="res://assets/fonts/retro.ttf" id="4_s58my"]
+[ext_resource type="AudioStream" uid="uid://bh8vkaowpcnyd" path="res://assets/sounds/tower_place.wav" id="5_ph3j5"]
 [ext_resource type="Texture2D" uid="uid://bel5litf1nq5o" path="res://assets/ui/sgrade.png" id="6_2q2pa"]
+[ext_resource type="AudioStream" uid="uid://wnec42goop7a" path="res://assets/sounds/result_screen_appear.wav" id="6_ph3j5"]
 
 [sub_resource type="Animation" id="Animation_ph3j5"]
 resource_name = "blur"
@@ -33,6 +35,21 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(105, 360), Vector2(105, 40)]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../SFX")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_ph3j5")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_2q2pa"]
 length = 0.001
@@ -79,7 +96,7 @@ gradient = SubResource("Gradient_w6ibn")
 
 [sub_resource type="Animation" id="Animation_ujvko"]
 resource_name = "grade_falling"
-length = 0.5
+length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -104,6 +121,21 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SFX")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_ph3j5")
+}],
+"times": PackedFloat32Array(0.266667)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_44tbk"]
 length = 0.001
@@ -163,9 +195,9 @@ texture = SubResource("GradientTexture1D_44tbk")
 [node name="Clipboard" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 105.0
-offset_top = 360.0
+offset_top = 40.0
 offset_right = 525.0
-offset_bottom = 680.0
+offset_bottom = 360.0
 texture = ExtResource("3_s58my")
 
 [node name="results" type="RichTextLabel" parent="Clipboard"]
@@ -266,6 +298,9 @@ modulate = Color(6.257e-07, 0, 0.3427, 0.356863)
 z_as_relative = false
 position = Vector2(5, 2)
 texture = ExtResource("6_2q2pa")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+volume_db = 1.0
 
 [connection signal="animation_finished" from="StartUp" to="." method="_on_start_up_animation_finished"]
 [connection signal="animation_finished" from="GradeFalling" to="." method="_on_grade_falling_animation_finished"]

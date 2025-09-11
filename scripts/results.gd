@@ -2,7 +2,9 @@ extends Control
 @onready var clipboard_text = $Clipboard.get_children()
 @onready var grade_falling = $GradeFalling
 @onready var grade = $Grade
+@onready var sfx = $SFX
 func _ready() -> void:
+	sfx.play()
 	for text in clipboard_text:
 		text.visible = false
 

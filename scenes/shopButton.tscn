@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d01u42mgic1tt"]
+[gd_scene load_steps=9 format=3 uid="uid://d01u42mgic1tt"]
 
 [ext_resource type="FontFile" uid="uid://0vaspj58mr76" path="res://assets/fonts/retro.ttf" id="1_lwpm2"]
 [ext_resource type="Script" uid="uid://dh8npq31erocr" path="res://scripts/shop_button.gd" id="1_rqno8"]
+[ext_resource type="AudioStream" uid="uid://sacww8i6kbgx" path="res://assets/sounds/tower_place2.wav" id="3_trd0v"]
+[ext_resource type="AudioStream" uid="uid://c6pqmfsqagdm7" path="res://assets/sounds/tower_place3.wav" id="4_trd0v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqno8"]
 bg_color = Color(0, 0, 0, 1)
@@ -97,3 +99,9 @@ horizontal_alignment = 1
 libraries = {
 &"": SubResource("AnimationLibrary_trd0v")
 }
+
+[node name="noSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_trd0v")
+
+[node name="okSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_trd0v")

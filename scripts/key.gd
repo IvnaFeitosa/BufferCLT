@@ -2,8 +2,9 @@ extends PathFollow2D
 class_name Key
 const SPEED = 100.0
 const money_reward = 25
-@export var HP = 4
+@export var HP = 1
 @onready var animatedSprite = $AnimatedSprite2D
+@onready var audioSFX = $AudioStreamPlayer
 var previous_pos: Vector2
 
 func _ready() -> void:
@@ -30,6 +31,10 @@ func _physics_process(delta: float) -> void:
 func take_damage(dmg: int):
 	HP -= dmg
 	if HP <= 0:
+		remove_child(audioSFX)
+		get_tree().current_scene.add_child(audioSFX)
+		audioSFX.play()
+		audioSFX.connect("finished",queue_free)
 		gameManager.add_money(money_reward)
 		set_up_money_text()
 		gameManager.add_enemy_killed(1)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmjcamwvyw2ev"]
+[gd_scene load_steps=8 format=3 uid="uid://bmjcamwvyw2ev"]
 
 [ext_resource type="Script" uid="uid://bqa16bx7g2gv5" path="res://scripts/wave_ui.gd" id="1_ke5q7"]
 [ext_resource type="Texture2D" uid="uid://577xnwojecpu" path="res://assets/ui/flag_ui.png" id="2_hpqpw"]
 [ext_resource type="FontFile" uid="uid://0vaspj58mr76" path="res://assets/fonts/retro.ttf" id="3_nhdmn"]
+[ext_resource type="AudioStream" uid="uid://hxvc028wtt6l" path="res://assets/sounds/wave_alert.wav" id="4_hpqpw"]
 
 [sub_resource type="Animation" id="Animation_ke5q7"]
 resource_name = "text anim"
@@ -110,3 +111,6 @@ theme_override_fonts/normal_font = ExtResource("3_nhdmn")
 theme_override_font_sizes/normal_font_size = 44
 text = "WAVE 1!"
 metadata/_edit_use_anchors_ = true
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_hpqpw")
