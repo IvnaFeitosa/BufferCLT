@@ -4,6 +4,6 @@
 
 [resource]
 shader = ExtResource("1_ysm1o")
-shader_parameter/blur_amount = 1.8
+shader_parameter/blur_amount = 9.5e-08
 shader_parameter/mix_amount = 0.1
 shader_parameter/color_over = Color(0, 0, 0, 1)

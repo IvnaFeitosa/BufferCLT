@@ -71,11 +71,11 @@ _data = {
 &"grade_falling": SubResource("Animation_s58my")
 }
 
-[sub_resource type="Gradient" id="Gradient_0tnpc"]
+[sub_resource type="Gradient" id="Gradient_w6ibn"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_44tbk"]
-gradient = SubResource("Gradient_0tnpc")
+gradient = SubResource("Gradient_w6ibn")
 
 [sub_resource type="Animation" id="Animation_ujvko"]
 resource_name = "grade_falling"
@@ -163,9 +163,9 @@ texture = SubResource("GradientTexture1D_44tbk")
 [node name="Clipboard" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 105.0
-offset_top = 40.0
+offset_top = 360.0
 offset_right = 525.0
-offset_bottom = 360.0
+offset_bottom = 680.0
 texture = ExtResource("3_s58my")
 
 [node name="results" type="RichTextLabel" parent="Clipboard"]
