@@ -162,10 +162,10 @@ texture = SubResource("GradientTexture1D_44tbk")
 
 [node name="Clipboard" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 360.0
-offset_right = 500.0
-offset_bottom = 680.0
+offset_left = 105.0
+offset_top = 40.0
+offset_right = 525.0
+offset_bottom = 360.0
 texture = ExtResource("3_s58my")
 
 [node name="results" type="RichTextLabel" parent="Clipboard"]

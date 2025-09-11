@@ -1,15 +1,53 @@
-[gd_scene load_steps=6 format=3 uid="uid://t1ws7xja47ko"]
+[gd_scene load_steps=9 format=3 uid="uid://t1ws7xja47ko"]
 
 [ext_resource type="Script" uid="uid://cdpwsm4pbm8jn" path="res://scripts/title_screen.gd" id="1_iul6a"]
 [ext_resource type="Texture2D" uid="uid://drqt51cc4bce0" path="res://assets/background_menu.png" id="2_uxtqq"]
 [ext_resource type="FontFile" uid="uid://0vaspj58mr76" path="res://assets/fonts/retro.ttf" id="3_imref"]
 
 [sub_resource type="Gradient" id="Gradient_iul6a"]
-offsets = PackedFloat32Array(0.480519, 0.88961)
+offsets = PackedFloat32Array(0.539877, 0.871166)
 colors = PackedColorArray(0.156863, 0.705882, 0.360784, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_uxtqq"]
 gradient = SubResource("Gradient_iul6a")
+
+[sub_resource type="Animation" id="Animation_tt55a"]
+resource_name = "flicker"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0.784584, 1),
+"update": 0,
+"values": [Vector2(0.7, 1), Vector2(0.9, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t7v6v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vhbaf"]
+_data = {
+&"RESET": SubResource("Animation_t7v6v"),
+&"flicker": SubResource("Animation_tt55a")
+}
 
 [node name="titleScreen" type="Control"]
 layout_mode = 3
@@ -36,6 +74,12 @@ offset_bottom = 234.0
 texture = SubResource("GradientTexture1D_uxtqq")
 expand_mode = 1
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Selector"]
+libraries = {
+&"": SubResource("AnimationLibrary_vhbaf")
+}
+autoplay = "flicker"
+
 [node name="Menu" type="VBoxContainer" parent="."]
 layout_direction = 2
 layout_mode = 1
@@ -57,21 +101,21 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.756863, 0, 1)
 theme_override_fonts/font = ExtResource("3_imref")
 theme_override_font_sizes/font_size = 11
-text = "iniciar jogo"
+text = "start game"
 
 [node name="LabelContinue" type="Label" parent="Menu"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.756863, 0, 1)
 theme_override_fonts/font = ExtResource("3_imref")
 theme_override_font_sizes/font_size = 11
-text = "continuar"
+text = "continue"
 
 [node name="LabelSelect" type="Label" parent="Menu"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.756863, 0, 1)
 theme_override_fonts/font = ExtResource("3_imref")
 theme_override_font_sizes/font_size = 11
-text = "selecionar fase"
+text = "stage select"
 
 [node name="LabelExit" type="Label" parent="Menu"]
 z_index = 2
@@ -79,4 +123,4 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.756863, 0, 1)
 theme_override_fonts/font = ExtResource("3_imref")
 theme_override_font_sizes/font_size = 11
-text = "sair"
+text = "quit"
