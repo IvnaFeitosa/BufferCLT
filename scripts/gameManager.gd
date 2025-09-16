@@ -64,3 +64,15 @@ func tween_number(label: Label, from_value: int, to_value: int, duration: float)
 		to_value,
 		duration
 	)
+
+
+## Reseta o estado do singleton
+func reset():
+	money = 300
+	health  = 10
+	stage = 0
+	enemies_killed = 0
+	towers_bought = 0
+	current_wave = -1
+	max_wave = stage_resource.waves.size()
+	all_enemies_from_wave_spawned = false

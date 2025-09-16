@@ -195,10 +195,10 @@ texture = SubResource("GradientTexture1D_44tbk")
 
 [node name="Clipboard" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 105.0
-offset_top = 40.0
-offset_right = 525.0
-offset_bottom = 360.0
+offset_left = 103.0
+offset_top = 39.0
+offset_right = 523.0
+offset_bottom = 359.0
 texture = ExtResource("3_s58my")
 
 [node name="results" type="RichTextLabel" parent="Clipboard"]
@@ -289,6 +289,16 @@ theme_override_fonts/font = ExtResource("4_s58my")
 theme_override_font_sizes/font_size = 11
 text = "0"
 
+[node name="Button" type="Button" parent="Clipboard"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 263.0
+offset_right = 487.0
+offset_bottom = 296.0
+theme_override_fonts/font = ExtResource("4_s58my")
+text = ">
+"
+
 [node name="GradeFalling" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_6uev3")
@@ -303,11 +313,12 @@ texture = ExtResource("6_2q2pa")
 [node name="Grade2" type="Sprite2D" parent="Grade"]
 modulate = Color(6.257e-07, 0, 0.3427, 0.356863)
 z_as_relative = false
-position = Vector2(5, 2)
+position = Vector2(6, 2)
 texture = ExtResource("6_2q2pa")
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 volume_db = 1.0
 
 [connection signal="animation_finished" from="StartUp" to="." method="_on_start_up_animation_finished"]
+[connection signal="pressed" from="Clipboard/Button" to="." method="_on_button_pressed"]
 [connection signal="animation_finished" from="GradeFalling" to="." method="_on_grade_falling_animation_finished"]

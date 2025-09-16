@@ -47,6 +47,7 @@ func update_arrow_position():
 	
 	
 func execute_option():
+	gameManager.reset()
 	match selected_index:
 		0:
 			get_tree().change_scene_to_file("res://scenes/game.tscn")
