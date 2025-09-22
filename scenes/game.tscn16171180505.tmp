@@ -39,6 +39,7 @@ script/source = "extends Button
 var tween : Tween
 func _ready() -> void:
 	gameManager.connect(\"wave_done\", Callable(self, \"_on_wave_done\"))
+	tween = Tween.New()
 func _on_pressed() -> void:
 	icon = pressed_icon
 	gameManager.change_wave()
