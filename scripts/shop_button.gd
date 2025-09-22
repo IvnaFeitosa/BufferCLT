@@ -15,10 +15,11 @@ func _pressed():
 		remove_child(ok_sfx)
 		get_tree().current_scene.add_child(ok_sfx)
 		ok_sfx.play()
-		ok_sfx.connect("finished",queue_free)
+		ok_sfx.connect("finished",Callable(ok_sfx, "queue_free"))
 		emit_signal("tower_bought", tower_data)
 	else:
 		no_sfx.play()
+		no_sfx.connect("finished",Callable(no_sfx, "queue_free"))
 		var tween = create_tween()
 		anim.play("shake")
 		tween.tween_property(self, "modulate",Color.RED, 0.2).set_trans(Tween.TRANS_SINE)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cxtvdmrgmqnnu"]
+[gd_scene load_steps=30 format=3 uid="uid://cxtvdmrgmqnnu"]
 
 [ext_resource type="Script" uid="uid://co7mu1duifpxd" path="res://scripts/results.gd" id="1_ph3j5"]
 [ext_resource type="Material" uid="uid://bhhndo7xd78gv" path="res://assets/shaders/blur.tres" id="2_s58my"]
@@ -6,7 +6,9 @@
 [ext_resource type="FontFile" uid="uid://0vaspj58mr76" path="res://assets/fonts/retro.ttf" id="4_s58my"]
 [ext_resource type="AudioStream" uid="uid://bh8vkaowpcnyd" path="res://assets/sounds/tower_place.wav" id="5_ph3j5"]
 [ext_resource type="Texture2D" uid="uid://bel5litf1nq5o" path="res://assets/ui/sgrade.png" id="6_2q2pa"]
+[ext_resource type="Texture2D" uid="uid://ho6ykvi67n2w" path="res://assets/ui/continue_button.png" id="6_44tbk"]
 [ext_resource type="AudioStream" uid="uid://wnec42goop7a" path="res://assets/sounds/result_screen_appear.wav" id="6_ph3j5"]
+[ext_resource type="Script" uid="uid://nrf03ta7xhox" path="res://scripts/continue_results_button.gd" id="7_6uev3"]
 
 [sub_resource type="Animation" id="Animation_2q2pa"]
 length = 0.001
@@ -93,6 +95,28 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_44tbk"]
 gradient = SubResource("Gradient_w6ibn")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_00qb5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_00fns"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f8ry2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lmve7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jmcgi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_it16x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bpdww"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_odafc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fvh16"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rxvla"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_modre"]
 
 [sub_resource type="Animation" id="Animation_44tbk"]
 length = 0.001
@@ -289,15 +313,26 @@ theme_override_fonts/font = ExtResource("4_s58my")
 theme_override_font_sizes/font_size = 11
 text = "0"
 
-[node name="Button" type="Button" parent="Clipboard"]
+[node name="ContinueResultsButton" type="Button" parent="Clipboard"]
 layout_mode = 0
 offset_left = 448.0
 offset_top = 263.0
 offset_right = 487.0
 offset_bottom = 296.0
 theme_override_fonts/font = ExtResource("4_s58my")
-text = ">
-"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_00qb5")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_00fns")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_f8ry2")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_lmve7")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_jmcgi")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_it16x")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bpdww")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_odafc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fvh16")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_rxvla")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_modre")
+icon = ExtResource("6_44tbk")
+script = ExtResource("7_6uev3")
 
 [node name="GradeFalling" type="AnimationPlayer" parent="."]
 libraries = {
@@ -320,5 +355,5 @@ texture = ExtResource("6_2q2pa")
 volume_db = 1.0
 
 [connection signal="animation_finished" from="StartUp" to="." method="_on_start_up_animation_finished"]
-[connection signal="pressed" from="Clipboard/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Clipboard/ContinueResultsButton" to="." method="_on_button_pressed"]
 [connection signal="animation_finished" from="GradeFalling" to="." method="_on_grade_falling_animation_finished"]

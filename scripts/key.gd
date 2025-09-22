@@ -33,9 +33,10 @@ func take_damage(dmg: int):
 	HP -= dmg
 	if HP <= 0:
 		remove_child(audioSFX)
+		#aqui eu coloco o som na arvore e crio um sinal que chama queue free quando ele acabar
 		get_tree().current_scene.add_child(audioSFX)
+		audioSFX.connect("finished",Callable(audioSFX, "queue_free"))
 		audioSFX.play()
-		audioSFX.connect("finished",queue_free)
 		gameManager.add_money(money_reward)
 		set_up_money_text()
 		gameManager.add_enemy_killed(1)

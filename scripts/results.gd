@@ -26,6 +26,7 @@ func _on_grade_falling_animation_finished(_anim_name: StringName) -> void:
 
 
 func _on_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/titlescreen.tscn")
 	gameManager.reset()
 	grade.visible = false
+	get_tree().change_scene_to_file("res://scenes/titlescreen.tscn")
+	

@@ -5,12 +5,12 @@ signal health_changed(new_value: int)
 #goes to startwavebutton script in game scene
 signal wave_done()
 var spawner : Node = null
-var stage_resource = preload("res://scripts/stage0.tres")
+var stage_resource = preload("res://scripts/stage1.tres")
 var results_screen = preload("res://scenes/results.tscn")
 var wave_done_ui = preload("res://scenes/wave_done_ui.tscn")
 var money: int = 300
 var health: int  = 10
-var stage: int = 0
+var stage: int = 1
 var enemies_killed: int = 0
 var towers_bought: int = 0
 
@@ -58,12 +58,10 @@ func check_for_end_of_wave():
 		add_money(100)
 		get_tree().get_root().add_child(wave_done_ui_node)
 		wave_done_ui_node.play_anim()
-		
-		
 		emit_signal("wave_done")
 		
 func change_scene_safe():
-	get_tree().get_root().add_child(results_screen.instantiate())
+	get_tree().current_scene.add_child(results_screen.instantiate())
 	
 func _on_wave_finished_spawning():
 	all_enemies_from_wave_spawned = true

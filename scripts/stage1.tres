@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Stage" load_steps=6 format=3 uid="uid://c5ep1fwj4dpy3"]
+
+[ext_resource type="Script" uid="uid://dis2kx0wtmx6e" path="res://scripts/stage.gd" id="1_fv3ex"]
+[ext_resource type="Script" uid="uid://cb244g8qi5nma" path="res://scripts/wave.gd" id="2_tmgyi"]
+[ext_resource type="Script" uid="uid://c31vrf6samx0g" path="res://scripts/enemy_sequence.gd" id="3_tmgyi"]
+
+[sub_resource type="Resource" id="Resource_pkevp"]
+script = ExtResource("3_tmgyi")
+name = "Key"
+amount = 1
+time = 0.0
+metadata/_custom_type_script = "uid://c31vrf6samx0g"
+
+[sub_resource type="Resource" id="Resource_cspde"]
+script = ExtResource("2_tmgyi")
+enemy_sequences = Array[ExtResource("3_tmgyi")]([SubResource("Resource_pkevp")])
+metadata/_custom_type_script = "uid://cb244g8qi5nma"
+
+[resource]
+script = ExtResource("1_fv3ex")
+waves = Array[ExtResource("2_tmgyi")]([SubResource("Resource_cspde")])
+metadata/_custom_type_script = "uid://dis2kx0wtmx6e"

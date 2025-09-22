@@ -21,8 +21,10 @@ func _input(event):
 		selected_index = (selected_index - 1 + menu_items.size()) % menu_items.size()
 		update_selection()
 	elif event.is_action_pressed("ui_accept"):
-		ok_sfx.play()
-		await ok_sfx.finished
+		var sfx = ok_sfx.duplicate()
+		sfx.connect("finished", Callable(sfx, "queue_free"))
+		get_tree().root.add_child(sfx)
+		sfx.play()
 		execute_option()
 
 func update_selection():
