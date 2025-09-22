@@ -7,7 +7,6 @@ var selected_index = 0
 @onready var ok_sfx = $okSFX
 @onready var select_sfx = $selectSFX
 func _ready():
-	background_img.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 
 	menu_items = $Menu.get_children()
 	update_selection()
@@ -44,3 +43,24 @@ func execute_option():
 			get_tree().change_scene_to_file("res://scenes/select_phase.tscn")
 		3:
 			get_tree().quit()
+
+func handle_mouse_option(opt: int):
+	if (selected_index != opt):
+		select_sfx.play()
+		selected_index = opt
+		update_selection()
+
+func _on_label_exit_mouse_entered() -> void:
+	handle_mouse_option(3)
+
+
+func _on_label_select_mouse_entered() -> void:
+	handle_mouse_option(2)
+
+
+func _on_label_continue_mouse_entered() -> void:
+	handle_mouse_option(1)
+
+
+func _on_label_start_mouse_entered() -> void:
+	handle_mouse_option(0)
