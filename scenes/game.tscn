@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c6wb6f88gf6g6"]
+[gd_scene load_steps=21 format=3 uid="uid://c6wb6f88gf6g6"]
 
 [ext_resource type="Script" uid="uid://tx5yroxmqdu8" path="res://scripts/game.gd" id="1_gee14"]
 [ext_resource type="Texture2D" uid="uid://b0lcuh1ru0ih8" path="res://assets/map.png" id="1_uwrxv"]
@@ -11,12 +11,47 @@
 [ext_resource type="PackedScene" uid="uid://dr0d5mpsyia50" path="res://scenes/tower_spot.tscn" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://bmjcamwvyw2ev" path="res://scenes/wave_ui.tscn" id="7_gee14"]
 [ext_resource type="PackedScene" uid="uid://g8pux5icx2i" path="res://scenes/coin_ui.tscn" id="8_gee14"]
+[ext_resource type="Texture2D" uid="uid://dj0cvdhjy82o6" path="res://assets/ui/start_wave_button.png" id="12_dinhu"]
 
 [sub_resource type="Curve2D" id="Curve2D_gee14"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 157, 364, 0, 0, 0, 0, 182, 281, 0, 0, 0, 0, 280, 279, 0, 0, 0, 0, 333, 228, 0, 0, 0, 0, 284, 172, 0, 0, 0, 0, 122, 171, 0, 0, 0, 0, 162, 40, 0, 0, 0, 0, 675, 40)
 }
 point_count = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dinhu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_trtic"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ir15t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ca42v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rysoc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kvuet"]
+
+[sub_resource type="GDScript" id="GDScript_dinhu"]
+script/source = "extends Button
+@onready var timer = $StartWaveButtonTimer
+@onready var normal_icon = preload(\"res://assets/ui/start_wave_button.png\")
+@onready var pressed_icon = preload(\"res://assets/ui/start_wave_button_pressed.png\")
+func _ready() -> void:
+	gameManager.connect(\"wave_done\", Callable(self, \"_on_wave_done\"))
+func _on_pressed() -> void:
+	icon = pressed_icon
+	gameManager.change_wave()
+	timer.start(0.5)
+	
+func _on_wave_done():
+	timer.start(1)
+
+#sorry couldnt find of a better way to do this
+#i want the start wave button to only appear after the wave done animation is done
+func _on_timer_timeout() -> void:
+	visible = !visible
+	icon = normal_icon
+"
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_gee14")
@@ -69,4 +104,25 @@ stages = Array[ExtResource("2_vtaks")]([ExtResource("3_kvpfn")])
 [node name="StagePath" type="Path2D" parent="Spawner"]
 curve = SubResource("Curve2D_gee14")
 
+[node name="StartWaveButton" type="Button" parent="."]
+offset_left = 570.0
+offset_top = 300.0
+offset_right = 610.0
+offset_bottom = 340.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dinhu")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_trtic")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ir15t")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ca42v")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_rysoc")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kvuet")
+icon = ExtResource("12_dinhu")
+icon_alignment = 1
+expand_icon = true
+script = SubResource("GDScript_dinhu")
+
+[node name="StartWaveButtonTimer" type="Timer" parent="StartWaveButton"]
+one_shot = true
+
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]
+[connection signal="pressed" from="StartWaveButton" to="StartWaveButton" method="_on_pressed"]
+[connection signal="timeout" from="StartWaveButton/StartWaveButtonTimer" to="StartWaveButton" method="_on_timer_timeout"]

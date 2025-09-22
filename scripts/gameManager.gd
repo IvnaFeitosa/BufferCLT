@@ -2,14 +2,18 @@ extends Node
 signal wave_changed(new_value: int)
 signal money_changed(new_value: int)
 signal health_changed(new_value: int)
+#goes to startwavebutton script in game scene
+signal wave_done()
 var spawner : Node = null
 var stage_resource = preload("res://scripts/stage0.tres")
 var results_screen = preload("res://scenes/results.tscn")
+var wave_done_ui = preload("res://scenes/wave_done_ui.tscn")
 var money: int = 300
 var health: int  = 10
 var stage: int = 0
 var enemies_killed: int = 0
 var towers_bought: int = 0
+
 var current_wave: int = -1
 var max_wave = stage_resource.waves.size()
 var all_enemies_from_wave_spawned : bool = false
@@ -46,10 +50,18 @@ func change_wave():
 		emit_signal("wave_changed", current_wave)
 	
 func check_for_end_of_wave():
+	#if theres still no one alive and they all have spawned you can end the wave
 	if !get_tree().has_group("current_wave_enemies") and all_enemies_from_wave_spawned:
 		all_enemies_from_wave_spawned = false
-		change_wave()
-
+		var wave_done_ui_node = wave_done_ui.instantiate()
+		wave_done_ui_node.set_text_for_money(100)
+		add_money(100)
+		get_tree().get_root().add_child(wave_done_ui_node)
+		wave_done_ui_node.play_anim()
+		
+		
+		emit_signal("wave_done")
+		
 func change_scene_safe():
 	get_tree().get_root().add_child(results_screen.instantiate())
 	
