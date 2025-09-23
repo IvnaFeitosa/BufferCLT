@@ -19,7 +19,6 @@ func _pressed():
 		emit_signal("tower_bought", tower_data)
 	else:
 		no_sfx.play()
-		no_sfx.connect("finished",Callable(no_sfx, "queue_free"))
 		var tween = create_tween()
 		anim.play("shake")
 		tween.tween_property(self, "modulate",Color.RED, 0.2).set_trans(Tween.TRANS_SINE)
