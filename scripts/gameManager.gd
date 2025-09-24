@@ -4,20 +4,26 @@ signal money_changed(new_value: int)
 signal health_changed(new_value: int)
 #goes to startwavebutton script in game scene
 signal wave_done()
+
+@export var stages: Array[Stage]
+var current_stage: int = 0
+var stage_resource
+
 var spawner : Node = null
-var stage_resource = preload("res://scripts/stage1.tres")
 var results_screen = preload("res://scenes/results.tscn")
 var wave_done_ui = preload("res://scenes/wave_done_ui.tscn")
 var money: int = 300
 var health: int  = 10
-var stage: int = 1
+
 var enemies_killed: int = 0
 var towers_bought: int = 0
 
 var current_wave: int = -1
-var max_wave = stage_resource.waves.size()
+var max_wave: int
 var all_enemies_from_wave_spawned : bool = false
-
+func _ready() -> void:
+	stage_resource = stages[current_stage]
+	max_wave = stage_resource.waves.size()
 func register_spawner(node:Node)->void:
 	spawner = node
 	spawner.wave_finished_spawning.connect(_on_wave_finished_spawning)
@@ -80,7 +86,7 @@ func tween_number(label: Label, from_value: int, to_value: int, duration: float)
 func reset():
 	money = 300
 	health  = 10
-	stage = 0
+	current_stage = 0
 	enemies_killed = 0
 	towers_bought = 0
 	current_wave = -1

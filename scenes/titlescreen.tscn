@@ -99,7 +99,7 @@ _data = {
 
 [sub_resource type="Gradient" id="Gradient_iul6a"]
 offsets = PackedFloat32Array(0.539877, 0.871166)
-colors = PackedColorArray(0.0521632, 0.295365, 0.139395, 1, 1, 1, 1, 0)
+colors = PackedColorArray(0.0238842, 0.807302, 0.0663679, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_uxtqq"]
 gradient = SubResource("Gradient_iul6a")
@@ -158,7 +158,7 @@ offset_right = 600.0
 offset_bottom = 320.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.337373, 0.715141, 0.433725, 1)
+color = Color(0.588238, 0.956005, 0.667318, 1)
 
 [node name="Repeating" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.172549)

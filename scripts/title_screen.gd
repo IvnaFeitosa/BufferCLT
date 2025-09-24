@@ -38,7 +38,7 @@ func update_selection():
 func execute_option():
 	match selected_index:
 		0:
-			get_tree().change_scene_to_file("res://scenes/game.tscn")
+			get_tree().change_scene_to_file("res://scenes/stage_intro.tscn")
 		1:
 			get_tree().change_scene_to_file("res://scenes/phase2.tscn")
 		2:

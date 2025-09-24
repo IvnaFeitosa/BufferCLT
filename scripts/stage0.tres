@@ -78,4 +78,5 @@ metadata/_custom_type_script = "uid://cb244g8qi5nma"
 [resource]
 script = ExtResource("1_bqy62")
 waves = Array[ExtResource("2_0kwdk")]([SubResource("Resource_o68ah"), SubResource("Resource_d1bkw"), SubResource("Resource_1d86p")])
+intro_char_pos = Array[Vector2i]([Vector2i(2, 59), Vector2i(15, 12), Vector2i(74, 54), Vector2i(1, 1)])
 metadata/_custom_type_script = "uid://dis2kx0wtmx6e"

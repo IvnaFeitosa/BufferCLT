@@ -1,6 +1,5 @@
 extends Node2D
 signal wave_finished_spawning
-@export var stages: Array[Stage]
 @onready var timer = $SpawnTimer
 @onready var path = $StagePath
 var rng = RandomNumberGenerator.new()
@@ -11,7 +10,7 @@ var waves
 func _ready() -> void:
 	gameManager.register_spawner(self)
 	gameManager.connect("wave_changed", Callable(self, "_on_wave_change"))
-	stage = stages[gameManager.stage]
+	stage = gameManager.stage_resource
 	waves = stage.waves
 	#flexing my abilities to be the dumbest person alive
 	#timer.start(waves[gameManager.current_wave].enemy_sequences[current_sequence].time)

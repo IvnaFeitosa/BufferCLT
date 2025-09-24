@@ -1,0 +1,193 @@
+[gd_scene load_steps=29 format=3 uid="uid://52u26lfnkejl"]
+
+[ext_resource type="Script" uid="uid://d1si3wnl0vxy" path="res://scripts/stage_intro.gd" id="1_aydkd"]
+[ext_resource type="Shader" uid="uid://b5yylw5ybccxl" path="res://assets/shaders/titlescreen.gdshader" id="2_8qhjs"]
+[ext_resource type="Texture2D" uid="uid://b1nbmrnrx8u24" path="res://assets/story/0.png" id="2_am68u"]
+[ext_resource type="Texture2D" uid="uid://c6pw4cy0vbj5s" path="res://assets/ui/spiral.png" id="3_q10sc"]
+[ext_resource type="Texture2D" uid="uid://br4aljbouf1cx" path="res://assets/story/1.png" id="3_r4xqs"]
+[ext_resource type="Texture2D" uid="uid://heodf1ifwulw" path="res://assets/story/2.png" id="4_gr6cl"]
+[ext_resource type="Texture2D" uid="uid://bxycx0wco83ei" path="res://assets/story/3.png" id="5_8qhjs"]
+[ext_resource type="Texture2D" uid="uid://c8b4udvxba6ue" path="res://assets/story/4.png" id="6_q10sc"]
+[ext_resource type="Texture2D" uid="uid://ccinjnuhyr00n" path="res://assets/story/4_top.png" id="7_nxtvd"]
+[ext_resource type="Texture2D" uid="uid://che0isia8f5hw" path="res://assets/story/5.png" id="8_vjveg"]
+[ext_resource type="Texture2D" uid="uid://dfd6jdudbhoax" path="res://assets/story/6.png" id="9_orjr5"]
+[ext_resource type="AudioStream" uid="uid://bc7tsmp1yh0e8" path="res://assets/sounds/menu_select_sound.wav" id="12_q10sc"]
+[ext_resource type="Texture2D" uid="uid://dc1f0kmtnqf2m" path="res://assets/ui/skip_button.png" id="13_nxtvd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nxtvd"]
+shader = ExtResource("2_8qhjs")
+shader_parameter/speed = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nxtvd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjveg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_orjr5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l7yxd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8tolk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vg5rc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8qd0f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y0sc6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4qiry"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2cs61"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5okyd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjveg"]
+atlas = ExtResource("13_nxtvd")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orjr5"]
+atlas = ExtResource("13_nxtvd")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l7yxd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjveg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orjr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjveg")
+}],
+"loop": false,
+"name": &"press",
+"speed": 8.0
+}]
+
+[node name="StageIntro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aydkd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.77089, 0.970516, 0.777034, 1)
+
+[node name="Repeating" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.172549)
+material = SubResource("ShaderMaterial_nxtvd")
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("3_q10sc")
+stretch_mode = 1
+
+[node name="Panel0" type="TextureRect" parent="." groups=["fixedpanel"]]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 45.0
+offset_right = 163.0
+offset_bottom = 122.0
+texture = ExtResource("2_am68u")
+
+[node name="Panel1" type="TextureRect" parent="." groups=["fixedpanel"]]
+modulate = Color(1, 1, 1, 0)
+offset_left = 168.0
+offset_top = 45.0
+offset_right = 317.0
+offset_bottom = 203.0
+texture = ExtResource("3_r4xqs")
+stretch_mode = 2
+
+[node name="Panel2" type="TextureRect" parent="." groups=["fixedpanel"]]
+modulate = Color(1, 1, 1, 0)
+offset_left = 321.0
+offset_top = 45.0
+offset_right = 511.0
+offset_bottom = 203.0
+texture = ExtResource("4_gr6cl")
+
+[node name="Panel3" type="TextureRect" parent="." groups=["fixedpanel"]]
+modulate = Color(1, 1, 1, 0)
+offset_left = 423.0
+offset_top = 45.0
+offset_right = 616.0
+offset_bottom = 203.0
+texture = ExtResource("5_8qhjs")
+
+[node name="Panel4" type="TextureRect" parent="." groups=["fixedpanel"]]
+modulate = Color(1, 1, 1, 0)
+offset_left = 24.0
+offset_top = 106.0
+offset_right = 163.0
+offset_bottom = 309.0
+texture = ExtResource("6_q10sc")
+
+[node name="Panel4TOP" type="TextureRect" parent="Panel4"]
+offset_right = 139.0
+offset_bottom = 203.0
+texture = ExtResource("7_nxtvd")
+
+[node name="Panel5" type="TextureRect" parent="." groups=["fixedpanel"]]
+modulate = Color(1, 1, 1, 0)
+offset_left = 168.0
+offset_top = 210.0
+offset_right = 318.0
+offset_bottom = 309.0
+texture = ExtResource("8_vjveg")
+stretch_mode = 2
+
+[node name="Panel6" type="TextureRect" parent="." groups=["fixedpanel"]]
+modulate = Color(1, 1, 1, 0)
+offset_left = 322.0
+offset_top = 210.0
+offset_right = 616.0
+offset_bottom = 309.0
+texture = ExtResource("9_orjr5")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true
+
+[node name="okSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_q10sc")
+
+[node name="SkipButton" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 565.0
+offset_top = 310.0
+offset_right = 603.0
+offset_bottom = 348.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nxtvd")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vjveg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_orjr5")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_l7yxd")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8tolk")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_vg5rc")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8qd0f")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_y0sc6")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4qiry")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_2cs61")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5okyd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkipButton"]
+position = Vector2(19, 19)
+sprite_frames = SubResource("SpriteFrames_l7yxd")
+animation = &"press"
+frame = 2
+speed_scale = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]
+[connection signal="animation_finished" from="SkipButton/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
