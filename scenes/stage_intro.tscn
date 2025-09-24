@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://52u26lfnkejl"]
+[gd_scene load_steps=35 format=3 uid="uid://52u26lfnkejl"]
 
 [ext_resource type="Script" uid="uid://d1si3wnl0vxy" path="res://scripts/stage_intro.gd" id="1_aydkd"]
 [ext_resource type="Shader" uid="uid://b5yylw5ybccxl" path="res://assets/shaders/titlescreen.gdshader" id="2_8qhjs"]
@@ -11,12 +11,53 @@
 [ext_resource type="Texture2D" uid="uid://ccinjnuhyr00n" path="res://assets/story/4_top.png" id="7_nxtvd"]
 [ext_resource type="Texture2D" uid="uid://che0isia8f5hw" path="res://assets/story/5.png" id="8_vjveg"]
 [ext_resource type="Texture2D" uid="uid://dfd6jdudbhoax" path="res://assets/story/6.png" id="9_orjr5"]
+[ext_resource type="Texture2D" uid="uid://bnj5iouxi026d" path="res://assets/go.png" id="12_l7yxd"]
 [ext_resource type="AudioStream" uid="uid://bc7tsmp1yh0e8" path="res://assets/sounds/menu_select_sound.wav" id="12_q10sc"]
 [ext_resource type="Texture2D" uid="uid://dc1f0kmtnqf2m" path="res://assets/ui/skip_button.png" id="13_nxtvd"]
+[ext_resource type="AudioStream" uid="uid://dkc564r2ksle1" path="res://assets/music/stage intro.mp3" id="14_vjveg"]
+[ext_resource type="AudioStream" uid="uid://b0s6s5s1lmvkk" path="res://assets/sounds/go.mp3" id="15_orjr5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nxtvd"]
 shader = ExtResource("2_8qhjs")
 shader_parameter/speed = 1.0
+
+[sub_resource type="Animation" id="Animation_l7yxd"]
+resource_name = "shake"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.11, 0.2, 0.27, 0.38),
+"transitions": PackedFloat32Array(-0.5, -0.5, -0.5, -0.5),
+"update": 0,
+"values": [Vector2(-41, -25), Vector2(-14, -33), Vector2(-48, 1.99999), Vector2(-9.00002, -5.00001)]
+}
+
+[sub_resource type="Animation" id="Animation_8tolk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-30, -18)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vg5rc"]
+_data = {
+&"RESET": SubResource("Animation_8tolk"),
+&"shake": SubResource("Animation_l7yxd")
+}
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nxtvd"]
 
@@ -86,6 +127,7 @@ color = Color(0.77089, 0.970516, 0.777034, 1)
 [node name="Repeating" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.172549)
 material = SubResource("ShaderMaterial_nxtvd")
+layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
 texture = ExtResource("3_q10sc")
@@ -102,6 +144,7 @@ texture = ExtResource("2_am68u")
 
 [node name="Panel1" type="TextureRect" parent="." groups=["fixedpanel"]]
 modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = 168.0
 offset_top = 45.0
 offset_right = 317.0
@@ -111,6 +154,7 @@ stretch_mode = 2
 
 [node name="Panel2" type="TextureRect" parent="." groups=["fixedpanel"]]
 modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = 321.0
 offset_top = 45.0
 offset_right = 511.0
@@ -119,6 +163,7 @@ texture = ExtResource("4_gr6cl")
 
 [node name="Panel3" type="TextureRect" parent="." groups=["fixedpanel"]]
 modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = 423.0
 offset_top = 45.0
 offset_right = 616.0
@@ -127,6 +172,7 @@ texture = ExtResource("5_8qhjs")
 
 [node name="Panel4" type="TextureRect" parent="." groups=["fixedpanel"]]
 modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = 24.0
 offset_top = 106.0
 offset_right = 163.0
@@ -134,12 +180,14 @@ offset_bottom = 309.0
 texture = ExtResource("6_q10sc")
 
 [node name="Panel4TOP" type="TextureRect" parent="Panel4"]
+layout_mode = 0
 offset_right = 139.0
 offset_bottom = 203.0
 texture = ExtResource("7_nxtvd")
 
 [node name="Panel5" type="TextureRect" parent="." groups=["fixedpanel"]]
 modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = 168.0
 offset_top = 210.0
 offset_right = 318.0
@@ -149,14 +197,28 @@ stretch_mode = 2
 
 [node name="Panel6" type="TextureRect" parent="." groups=["fixedpanel"]]
 modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = 322.0
 offset_top = 210.0
 offset_right = 616.0
 offset_bottom = 309.0
 texture = ExtResource("9_orjr5")
 
+[node name="goRect" type="TextureRect" parent="Panel6"]
+layout_mode = 0
+offset_left = -30.0
+offset_top = -18.0
+offset_right = 110.0
+offset_bottom = 42.0
+texture = ExtResource("12_l7yxd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel6/goRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_vg5rc")
+}
+
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.8
+wait_time = 1.5
 autostart = true
 
 [node name="okSFX" type="AudioStreamPlayer" parent="."]
@@ -187,6 +249,15 @@ sprite_frames = SubResource("SpriteFrames_l7yxd")
 animation = &"press"
 frame = 2
 speed_scale = 2.0
+
+[node name="BgMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_vjveg")
+autoplay = true
+parameters/looping = true
+
+[node name="goSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_orjr5")
+volume_db = 0.852
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]

@@ -1,5 +1,6 @@
 extends Control
 @onready var ok_sfx = $okSFX
+@onready var go_sfx = $goSFX
 var panels: Array
 var current_stage: int
 var current_stage_char_pos: Array[Vector2i]
@@ -27,17 +28,24 @@ func animate_panel(panel):
 	tween = create_tween()
 	tween.parallel().tween_property(panel, "position:y",panel.position.y, tween_time).from(panels[current_panel].position.y-50).set_trans(Tween.TRANS_SINE)
 	tween.parallel().tween_property(panel , "modulate:a", 1, tween_time).set_trans(Tween.TRANS_SINE)
+	if current_panel == 6:
+		go_sfx.play()
+		$Panel6/goRect/AnimationPlayer.play("shake")
 	current_panel+=1
+
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
 		var sfx = ok_sfx.duplicate()
 		sfx.connect("finished", Callable(sfx, "queue_free"))
 		get_tree().root.add_child(sfx)
 		sfx.play()
-		
+		#skip tween
 		tween.custom_step(tween_time+0.1)
+		#reset timer for next panel to appear
 		$Timer.start()
+		#if the player skip one tween the next one starts immediately after
 		advance_panel()
+		
 	elif event.is_action_pressed("ui_cancel"):
 		if tween and tween.is_running():
 			tween.stop()
@@ -47,7 +55,9 @@ func _input(event):
 		current_panel = 7
 func advance_panel():
 	if current_panel < 7:
-			animate_panel(panels[current_panel])
+		animate_panel(panels[current_panel])
+	elif current_panel == 7:
+		current_panel += 1
 	else:
 		get_tree().change_scene_to_file("res://scenes/game.tscn")
 func _on_timer_timeout() -> void:
